@@ -2,59 +2,69 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>The G52/G53 Incident</title>
 <style>
-:root{--bg:#090d16;--panel:#111827;--panel2:#182235;--text:#eef3ff;--muted:#9ca9bf;--accent:#67e8f9;--good:#86efac;--warn:#fbbf24;--danger:#fb7185}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#1b2940,#090d16 55%);color:var(--text);font-family:Inter,system-ui,sans-serif;min-height:100vh}
-#game{max-width:1050px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}
-h1{font-size:clamp(24px,4vw,40px);margin:0}.subtitle{color:var(--muted);margin:3px 0 0}
-.badge{border:1px solid #31415b;background:#101827;padding:8px 12px;border-radius:999px;font-weight:700}
-.layout{display:grid;grid-template-columns:1fr 320px;gap:14px}@media(max-width:800px){.layout{grid-template-columns:1fr}}
-.scene{background:linear-gradient(180deg,#152033,#0f1726);border:1px solid #2b3a52;border-radius:18px;min-height:590px;position:relative;overflow:hidden;box-shadow:0 20px 60px #0006}
-.train{position:absolute;inset:0;opacity:.9;pointer-events:none}.ceiling{height:62px;background:#202c3e;border-bottom:4px solid #0b1019}.floor{position:absolute;bottom:0;height:105px;width:100%;background:repeating-linear-gradient(90deg,#1d2838 0 38px,#263449 39px 77px);border-top:4px solid #34445d}
-.windows{display:flex;gap:12px;padding:18px 30px}.window{height:82px;flex:1;border:6px solid #34445d;border-radius:8px;background:linear-gradient(135deg,#667c92,#b9c9d6 45%,#40556b);position:relative}.window:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#ffffff18,#00000018)}
-.seats{position:absolute;left:0;right:0;bottom:105px;display:flex;justify-content:space-around;align-items:end}.seat{width:86px;height:92px;background:#52657e;border-radius:14px 14px 5px 5px;border:3px solid #70829b;box-shadow:inset 0 10px #6e8098}.aisle{width:130px}
-.player{position:absolute;bottom:116px;left:46%;width:38px;height:70px;transition:.4s;z-index:3}.head{width:30px;height:30px;border-radius:50%;background:#f1c7a5;margin:auto;border:2px solid #7f563f}.body{width:38px;height:43px;background:#3b82f6;border-radius:9px;margin-top:2px}.player:after{content:"GABRIEL";position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:800;color:var(--accent)}
-.npc{position:absolute;bottom:116px;width:42px;height:75px;z-index:2}.npc .head{width:30px}.npc .body{width:42px;height:45px;background:#64748b}.npc.marc{left:25%}.npc.julissa{left:65%}.npc.john{left:51%;}.npc.woman{left:78%}.npc.couple{left:19%}.npc.g53{left:82%;}.npc:after{content:attr(data-name);position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:800;white-space:nowrap;color:#d6e1f4}
-.dialog{position:absolute;left:18px;right:18px;bottom:18px;pointer-events:auto;background:#080c14eF;border:1px solid #40516c;border-radius:14px;padding:14px;z-index:999;backdrop-filter:blur(8px);touch-action:manipulation}
-.dialog .speaker{font-weight:900;color:var(--accent);margin-bottom:5px}.dialog p{margin:0 0 10px;line-height:1.45}.choices{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid #40516c;pointer-events:auto;touch-action:manipulation;background:#18243a;color:var(--text);padding:9px 12px;border-radius:9px;cursor:pointer;font-weight:700}.btn:hover{background:#233451}.btn:disabled{opacity:.4;cursor:not-allowed}
-.panel{background:#101827;border:1px solid #2b3a52;border-radius:18px;padding:16px}.panel h2{margin:0 0 10px;font-size:18px}.objective{padding:10px;border-radius:10px;background:#182235;margin:7px 0;border-left:4px solid #64748b}.objective.done{border-left-color:var(--good);text-decoration:line-through;color:#aab7ca}.objective.active{border-left-color:var(--accent);color:white}.stat{display:flex;justify-content:space-between;margin:9px 0;color:var(--muted)}.stat b{color:var(--text)}.log{max-height:205px;overflow:auto;font-size:13px;color:#b9c5d8}.log div{padding:5px 0;border-bottom:1px solid #223047}
-.kitchen{position:absolute;inset:62px 0 105px;display:none;align-items:center;justify-content:center;background:repeating-linear-gradient(0deg,#273242 0 35px,#303c4e 36px 70px)}.kitchen .wall{padding:28px;border:3px dashed #fb7185;color:#fecdd3;background:#160f17;border-radius:12px;text-align:center;font-weight:900}
-.end{position:absolute;inset:0;background:#050810EE;display:none;align-items:center;justify-content:center;text-align:center;z-index:20;padding:30px}.end.show{display:flex}.endbox{max-width:560px}.end h2{font-size:42px;margin:0 0 8px}.end p{color:#c3cedf;line-height:1.55}.mission{color:var(--good);font-weight:900;font-size:20px}
+*{box-sizing:border-box}body{margin:0;background:#080d16;color:#eef3ff;font-family:system-ui,-apple-system,sans-serif}
+#game{max-width:900px;margin:auto;padding:16px}.top{display:flex;justify-content:space-between;gap:10px;align-items:center}
+h1{font-size:clamp(24px,7vw,42px);margin:0}.sub{color:#9ca9bf}.badge{background:#18243a;border:1px solid #40516c;border-radius:20px;padding:8px;font-weight:800}
+.scene{margin-top:14px;min-height:600px;border:1px solid #33445e;border-radius:18px;overflow:hidden;position:relative;background:linear-gradient(#17253a 0 30%,#263449 30% 78%,#151d2a 78%)}
+.window{height:95px;margin:20px;border:7px solid #52657e;border-radius:10px;background:linear-gradient(135deg,#7890a6,#cbd7df,#50677d)}
+.seatrow{display:flex;justify-content:space-around;margin-top:55px}.seat{width:75px;height:90px;background:#536780;border-radius:14px;border:3px solid #7487a0}
+.people{display:flex;justify-content:space-around;align-items:end;margin-top:-35px;height:120px}.person{font-weight:800;text-align:center}.avatar{width:42px;height:65px;border-radius:20px 20px 8px 8px;background:#3b82f6;margin:auto;border:2px solid #111827}.npc .avatar{background:#64748b}
+.dialog{position:absolute;left:12px;right:12px;bottom:12px;background:#070b12f5;border:1px solid #52657e;border-radius:16px;padding:16px;z-index:5}
+.speaker{font-weight:900;color:#67e8f9;font-size:18px;margin-bottom:7px}.text{line-height:1.5;margin-bottom:13px}
+.buttons{display:flex;flex-wrap:wrap;gap:10px}.btn{appearance:none;border:1px solid #5a718f;background:#1d2c45;color:white;border-radius:11px;padding:13px 16px;font-size:16px;font-weight:800;min-height:48px;cursor:pointer;touch-action:manipulation}
+.btn:active{transform:scale(.98);background:#294263}.panel{margin-top:14px;border:1px solid #33445e;border-radius:16px;padding:14px;background:#101827}
+.obj{padding:8px;border-left:4px solid #40516c;margin:5px 0}.done{border-left-color:#86efac;text-decoration:line-through;color:#aab7ca}.active{border-left-color:#67e8f9}
+#complete{display:none;text-align:center;padding:40px 15px}.complete{color:#86efac;font-size:24px;font-weight:900}
 </style>
 </head>
 <body>
-<div id="game"><div class="top"><div><h1>The G52/G53 Incident</h1><div class="subtitle">An LNER storyline-disruptor quest</div></div><div class="badge" id="percent">MISSION 0%</div></div>
-<div class="layout"><main class="scene" id="scene"><div class="train"><div class="ceiling"></div><div class="windows"><div class="window"></div><div class="window"></div><div class="window"></div></div><div class="floor"></div><div class="seats"><div class="seat"></div><div class="seat"></div><div class="aisle"></div><div class="seat"></div><div class="seat"></div></div>
-<div class="npc marc" data-name="Marc"><div class="head"></div><div class="body"></div></div><div class="npc julissa" data-name="Julissa"><div class="head"></div><div class="body"></div></div><div class="npc john" data-name="John" style="display:none"><div class="head"></div><div class="body"></div></div><div class="npc woman" data-name="Seat occupant" style="display:none"><div class="head"></div><div class="body"></div></div><div class="npc couple" data-name="Couple" style="display:none"><div class="head"></div><div class="body"></div></div><div class="npc g53" data-name="G53" style="display:none"><div class="head"></div><div class="body"></div></div><div class="player"><div class="head"></div><div class="body"></div></div>
-<div class="kitchen" id="kitchen"><div class="wall">⚠ MAP LIMIT REACHED ⚠<br><small>The next coach is the kitchen.</small></div></div>
-</div><div class="dialog" id="dialog"></div><div class="end" id="end"><div class="endbox"><div class="mission">MISSION COMPLETE</div><h2>G52 + G53 recovered.</h2><p>You confirmed the train, found Marc, summoned John, recovered the reserved seats, survived the G58 negotiation, and finally sat down.</p><button class="btn" onclick="location.reload()">Play again</button></div></div></main>
-<aside class="panel"><h2>🎮 Quest Log</h2><div id="objectives"></div><hr style="border-color:#26344a"><div class="stat"><span>Relief</span><b id="relief">0%</b></div><div class="stat"><span>Mother's anger</span><b id="anger">100%</b></div><div class="stat"><span>Map exploration</span><b id="explore">0%</b></div><h2 style="margin-top:18px">📜 Event Log</h2><div class="log" id="log"></div></aside></div></div>
+<div id="game">
+<div class="top"><div><h1>The G52/G53 Incident</h1><div class="sub">An LNER storyline-disruptor quest</div></div><div class="badge" id="pct">MISSION 0%</div></div>
+<div class="scene">
+<div class="window"></div><div class="seatrow"><div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div></div>
+<div class="people">
+<div class="person npc"><div class="avatar"></div>Marc</div><div class="person npc"><div class="avatar"></div>Julissa</div><div class="person"><div class="avatar"></div>Gabriel</div>
+</div>
+<div class="dialog" id="dialog">
+<div class="speaker">SYSTEM</div>
+<div class="text">The train arrives at 15:24. Your mother is furious because someone is sitting in G53.</div>
+<div class="buttons"><button class="btn" onclick="go(1)">BEGIN INVESTIGATION</button></div>
+</div>
+<div id="complete"><div class="complete">MISSION COMPLETE</div><h2>G52 + G53 recovered.</h2><p>You confirmed the train, found Marc, summoned John, recovered the reserved seats, survived the G58 negotiation, and finally sat down.</p><button class="btn" onclick="location.reload()">PLAY AGAIN</button></div>
+</div>
+<div class="panel"><b>🎮 QUEST LOG</b><div id="quests"></div></div>
+</div>
 <script>
-const state={step:0,relief:0,anger:100,explore:0,done:false};
-const qs=[
-'Find a member of the staff','Confirm this is the correct train','Explain the G52/G53 seat problem','Return to Coach G','Recover G52 and G53','Ignore the G58 suggestion and claim your seats'];
-function render(){
- const completed=Math.min(state.step,6), pct=Math.round(completed/6*100);
- document.getElementById('percent').textContent='MISSION '+pct+'%';
- document.getElementById('relief').textContent=state.relief+'%';
- document.getElementById('anger').textContent=state.anger+'%';
- document.getElementById('explore').textContent=state.explore+'%';
- document.getElementById('objectives').innerHTML=qs.map((q,i)=>'<div class="objective '+(i<completed?'done':i===completed?'active':'')+'">'+(i<completed?'✓ ':i===completed?'▶ ':'○ ')+q+'</div>').join('');
+const qs=['Find a member of the staff','Confirm this is the correct train','Explain the G52/G53 seat problem','Return to Coach G','Recover G52 and G53','Ignore the G58 suggestion and claim your seats'];
+let step=0;
+function draw(){
+ document.getElementById('pct').textContent='MISSION '+Math.round(step/6*100)+'%';
+ document.getElementById('quests').innerHTML=qs.map((q,i)=>'<div class="obj '+(i<step?'done':i===step?'active':'')+'">'+(i<step?'✓ ':i===step?'▶ ':'○ ')+q+'</div>').join('');
 }
-function log(t){const e=document.createElement('div');e.textContent=t;document.getElementById('log').prepend(e)}
-function dialog(speaker,text,buttons){document.getElementById('dialog').innerHTML='<div class="speaker">'+speaker+'</div><p>'+text+'</p><div class="choices">'+buttons.map((b,i)=>'<button type="button" class="btn" data-i="'+i+'">'+b[0]+'</button>').join('')+'</div>';[...document.querySelectorAll('.choices .btn')].forEach((b,i)=>{b.addEventListener('click',buttons[i][1]);b.addEventListener('touchend',e=>{e.preventDefault();buttons[i][1]();},{passive:false});});}
-function showNPC(cls,show=true){document.querySelector('.'+cls).style.display=show?'block':'none'}
-function start(){render();log('The train arrives at 15:24. The announcement had said 15:36.');dialog('SYSTEM','The train is here. You board and discover someone sitting in G53.',[['Begin investigation',()=>exploreFirstClass()]])}
-function exploreFirstClass(){state.step=1;state.explore=60;render();showNPC('john',false);dialog('GABRIEL','Mission: Find a member of the staff. You walk from Coach B through First Class while NPCs stare.',[['Keep walking',()=>{document.getElementById('kitchen').style.display='flex';state.explore=100;render();dialog('SYSTEM','LIMIT REACHED. The next coach is the kitchen. You cannot proceed further.',[['Turn around',()=>talkMarc()]])}]])}
-function talkMarc(){document.getElementById('kitchen').style.display='none';state.step=1;render();dialog('Marc','Sorry—give me a second, yes?',[['Ask when the train departed',()=>{dialog('GABRIEL','At what time did this train depart?', [['Wait for answer',()=>{state.step=2;state.relief=100;render();dialog('Marc','Around 25 past 3.',[['Show itinerary',()=>{dialog('GABRIEL','Oh, so it’s this one?', [['Show phone',()=>{showJohn();}]]])}]] )}]] )}]])}
-function showJohn(){dialog('Marc','Yes, it’s this one. The train is correct.',[['Explain the seat problem',()=>{showNPC('john');state.step=3;render();dialog('GABRIEL','My seats are G52 and G53, but people are sitting there. My mother is quite enraged.',[['Ask John for help',()=>johnTickets()]])}]])}
-function johnTickets(){dialog('John','Can I see your tickets?',[['Show tickets',()=>{state.step=3;render();dialog('John','Your tickets are valid. G52 and G53 are reserved for you.',[['Return to Coach G',()=>returnG()]])}]])}
-function returnG(){state.step=4;state.explore=100;showNPC('woman');showNPC('john');render();dialog('GABRIEL','You return to Coach G. Your mother is still angry.',[['Wait while John deals with the seat',()=>dealSeat()]])}
-function dealSeat(){dialog('John','Alright, your seats are available.',[['Thank John',()=>{state.step=5;state.anger=80;showNPC('couple');render();dialog('GABRIEL','Thank you so much, sir.',[['Sit down',()=>finalEncounter()]])}]])}
-function finalEncounter(){dialog('Girlfriend','There’s another seat free next to yours.',[['Point at G58',()=>{state.step=5;render();dialog('GABRIEL','No. We will sit in our respective seats.',[['Claim G52 + G53',()=>complete()]])}]])}
-function complete(){state.step=6;state.anger=65;render();showNPC('woman',false);document.getElementById('end').classList.add('show');log('MISSION COMPLETE: G52 and G53 recovered.');}
-start();
+function box(s,t,opts){
+ document.getElementById('dialog').innerHTML='<div class="speaker">'+s+'</div><div class="text">'+t+'</div><div class="buttons">'+opts.map(x=>'<button class="btn" onclick="go('+x[1]+')">'+x[0]+'</button>').join('')+'</div>';
+}
+function go(n){
+ step=n;draw();
+ if(n===1)box('GABRIEL','Mission: Find a member of staff. You walk through Coach B and into First Class.',[['KEEP WALKING',2]]);
+ else if(n===2)box('SYSTEM','⚠ MAP LIMIT REACHED ⚠<br>The next coach is the kitchen. You cannot go further.',[['TURN AROUND',3]]);
+ else if(n===3)box('MARC','Sorry—give me a second, yes?',[['ASK ABOUT DEPARTURE',4]]);
+ else if(n===4)box('GABRIEL','At what time did this train depart?',[['WAIT FOR ANSWER',5]]);
+ else if(n===5)box('MARC','Around 25 past 3. Yes, this is the correct train.',[['EXPLAIN THE SEAT PROBLEM',6]]);
+ else if(n===6)box('GABRIEL','My seats are G52 and G53, but people are sitting there. My mother is enraged.',[['SHOW JOHN THE TICKETS',7]]);
+ else if(n===7)box('JOHN','Can I see your tickets?',[['SHOW TICKETS',8]]);
+ else if(n===8)box('JOHN','Your tickets are valid. G52 and G53 are reserved for you.',[['RETURN TO COACH G',9]]);
+ else if(n===9)box('GABRIEL','You return to Coach G. Your mother is still angry.',[['LET JOHN HANDLE IT',10]]);
+ else if(n===10)box('JOHN','Alright, your seats are available.',[['THANK JOHN',11]]);
+ else if(n===11)box('GABRIEL','Thank you so much, sir.',[['SIT DOWN',12]]);
+ else if(n===12)box('GIRLFRIEND','There is another seat free next to yours.',[['POINT AT G58',13]]);
+ else if(n===13)box('GABRIEL','No. We will sit in our respective seats.',[['CLAIM G52 + G53',14]]);
+ else if(n===14){step=6;draw();document.getElementById('dialog').style.display='none';document.getElementById('complete').style.display='block';document.getElementById('pct').textContent='MISSION 100%';}
+}
+draw();
 </script>
-</body></html>
+</body>
+</html>
